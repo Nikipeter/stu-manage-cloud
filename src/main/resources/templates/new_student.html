@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Form</title>
+</head>
+<body>
+
+<!-- ✅ Title changes automatically based on Add or Edit -->
+<h2 th:text="${student.id == null} ? 'Add New Student' : 'Edit Student'">Student Form</h2>
+
+<form th:action="@{/saveStudent}" th:object="${student}" method="post">
+
+    <!-- ✅ NEW — This is the most critical line for Update to work -->
+    <input type="hidden" th:field="*{id}" />
+
+    Name:   <input type="text" th:field="*{name}"   /><br><br>
+    Email:  <input type="text" th:field="*{email}"  /><br><br>
+    Course: <input type="text" th:field="*{course}" /><br><br>
+
+    <button type="submit">Save</button>
+    &nbsp;
+    <a href="/">Cancel</a>
+
+</form>
+
+</body>
+</html>
