@@ -2,6 +2,83 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Student Management</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f9fbfd;
+            color: #333;
+            margin: 40px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Style the Add button */
+        button {
+            background-color: #2ecc71;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+        }
+
+        button a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Clean up the table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0 !important; /* Overrides the border="1" attribute */
+        }
+
+        th {
+            background-color: #f4f6f8;
+            color: #4a5568;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        /* Keep your exact padding while making it look modern */
+        th, td {
+            padding: 12px 15px !important; 
+            border: 1px solid #e3e8ee !important;
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+
+        /* Style the action links inside the table */
+        td a {
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        td a[th\:href*="showFormForUpdate"], td a:not([th\:href])[href*="showFormForUpdate"] {
+            color: #3498db;
+        }
+
+        td a[th\:href*="deleteStudent"], td a:not([th\:href])[href*="deleteStudent"] {
+            color: #e74c3c;
+        }
+
+        td a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
@@ -19,7 +96,6 @@
             <th>Name</th>
             <th>Email</th>
             <th>Course</th>
-            <!-- ✅ NEW column -->
             <th>Actions</th>
             <th>Delete</th>
         </tr>
@@ -32,7 +108,6 @@
             <td th:text="${student.email}"></td>
             <td th:text="${student.course}"></td>
 
-            <!-- ✅ NEW — Edit button for each row -->
             <td>
                 <a th:href="@{/showFormForUpdate/{id}(id=${student.id})}">Edit</a>
             </td>

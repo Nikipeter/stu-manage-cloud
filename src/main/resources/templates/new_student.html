@@ -2,15 +2,86 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Student Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f9fbfd;
+            color: #333;
+            margin: 40px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Clean up form container style */
+        form {
+            background-color: white;
+            padding: 25px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid #e3e8ee;
+            max-width: 500px;
+        }
+
+        /* Style text inputs */
+        input[type="text"] {
+            width: 100%;
+            padding: 8px 12px;
+            margin-top: 6px;
+            margin-bottom: 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        /* Style the Save button */
+        button[type="submit"] {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #27ae60;
+        }
+
+        /* Style the Cancel link */
+        form a {
+            color: #7f8c8d;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+
+        form a:hover {
+            color: #34495e;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
-<!-- ✅ Title changes automatically based on Add or Edit -->
 <h2 th:text="${student.id == null} ? 'Add New Student' : 'Edit Student'">Student Form</h2>
 
 <form th:action="@{/saveStudent}" th:object="${student}" method="post">
 
-    <!-- ✅ NEW — This is the most critical line for Update to work -->
     <input type="hidden" th:field="*{id}" />
 
     Name:   <input type="text" th:field="*{name}"   /><br><br>
